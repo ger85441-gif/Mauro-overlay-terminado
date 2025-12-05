@@ -1,0 +1,85 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:transparent; overflow:hidden; font-family:'Arial Bold',sans-serif; }
+
+.overlay { position:relative; width:100vw; height:100vh; }
+
+/* Fondo gradiente azul */
+.bg {
+  position:absolute; inset:0; z-index:1;
+  background: linear-gradient(135deg, #0a1a2f 0%, #0f2b4e 40%, #1e3a6e 100%);
+}
+
+/* Barra superior */
+.topbar {
+  position:relative; z-index:10;
+  padding:2.2vw 4.5vw;
+  background: linear-gradient(90deg, #0d1b2a, #112240, #0f1e36, #0d1b2a);
+  background-size: 300% 100%;
+  animation: gradient 12s ease infinite;
+  border-bottom: 0.35vw solid #1e90ff;
+}
+@keyframes gradient { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+
+.container {
+  max-width:1920px; margin:0 auto;
+  display:flex; align-items:center; gap:4vw;
+}
+
+/* ===================== LOGO ANIMADO ===================== */
+.logo-area { position:relative; z-index:3; }
+.logo-wrapper {
+  position:relative;
+  width:28vw; max-width:460px; min-width:300px;
+  animation: logoFloat 8s ease-in-out infinite;
+}
+.logo-base { width:100%; }
+.logo-text {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:78%; animation: textPulse 4s ease-in-out infinite;
+}
+
+/* Brillo que pasa por dentro del logo */
+.logo-glow {
+  position:absolute;
+  top:-100%; left:-50%;
+  width:100%; height:200%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+  animation: logoShine 6s linear infinite;
+  pointer-events:none;
+  z-index:2;
+}
+@keyframes logoFloat {
+  0%,100% { transform:translateY(0); }
+  50%     { transform:translateY(-12px); }
+}
+@keyframes textPulse {
+  0%,100% { transform:translate(-50%,-50%) scale(1); }
+  50%     { transform:translate(-50%,-50%) scale(1.04); }
+}
+@keyframes logoShine {
+  0%   { transform:translateX(-100%) translateY(-50%) rotate(30deg); }
+  100% { transform:translateX(200%) translateY(-50%) rotate(30deg); }
+}
+
+/* REDES */
+.socials {
+  display:flex; gap:5.5vw; color:#f6e5d3; margin-left:-2vw;
+}
+.social { text-align:center; display:flex; flex-direction:column; align-items:center; }
+.social img { width:8.8vw; max-width:115px; min-width:70px; margin-bottom:0.9vw; }
+.social.yt img { width:9.8vw; max-width:130px; }
+.name { font-size:clamp(14px,1.55vw,24px); letter-spacing:0.18em; opacity:0.95; margin-bottom:0.2vw; }
+.user { font-size:clamp(19px,2.4vw,36px); letter-spacing:0.06em; }
+
+/* Hover */
+.social:hover img { transform:scale(1.12); transition:0.3s; }
+.social:hover .user { color:#fff; transition:0.3s; }
+
+/* Línea dorada */
+.line { height:0.45vw; min-height:5px; background:#f6e5d3; }
+
+/* Fade in */
+.topbar,.line { opacity:0; animation:fade 1.8s forwards; }
+.topbar { animation-delay:0.4s; }
+.line   { animation-delay:1s; }
+@keyframes fade { to{opacity:1} }
